@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useZxing } from "react-zxing";
 
 const BarcodeScanner: React.FC = () => {
@@ -16,16 +16,19 @@ const BarcodeScanner: React.FC = () => {
   });
 
   const startScanning = (): void => {
+    console.log("startScanning");
     setIsScanning(true);
     setResult("");
   };
 
- const stopScanning = (): void => {
-   setIsScanning(false);
-   if (result) {
-     fetchProductData(result);
-   }
- };
+  const stopScanning = (): void => {
+    console.log("stopScanning");
+    setIsScanning(false);
+    if (result) {
+      fetchProductData(result);
+    }
+  };
+
   const fetchProductData = async (barcode: string) => {
     try {
       const response = await fetch(`/api/product?barcode=${barcode}`);
@@ -40,6 +43,12 @@ const BarcodeScanner: React.FC = () => {
       // Handle error (e.g., show an error message to the user)
     }
   };
+
+  useEffect(() => {
+    if (result) {
+      fetchProductData(result);
+    }
+  }, [result]);
 
   return (
     <>
