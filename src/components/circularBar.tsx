@@ -40,7 +40,7 @@ const CircularBar: React.FC<CircularBarProps> = ({
   }, [currentPercentage, circumference]);
 
   return (
-    <div className="rounded-lg bg-gray-800 mx-5 flex justify-center text-center">
+    <div className="rounded-lg bg-gray-800 mx-5 flex justify-center text-center drop-shadow-2xl">
       <div className="p-5">
         <h2 className="text-xl font-bold mb-2">{title}</h2>
         <svg width={size} height={size}>
