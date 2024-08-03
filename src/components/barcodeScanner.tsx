@@ -2,7 +2,11 @@
 import React, { useState, useEffect } from "react";
 import { useZxing } from "react-zxing";
 
-const BarcodeScanner: React.FC = () => {
+interface BarcodeScannerProps {
+  onData: (data: any) => void;
+}
+
+const BarcodeScanner: React.FC<BarcodeScannerProps> = ({ onData }) => {
   const [result, setResult] = useState<string>("");
   const [isScanning, setIsScanning] = useState<boolean>(false);
 
@@ -15,9 +19,18 @@ const BarcodeScanner: React.FC = () => {
   });
 
   const fetchProductData = async (barcode: string) => {
-    let data = null;
+    if (!barcode) {
+      return {};
+    }
 
-    console.log("Fetching product data for barcode:", barcode);
+    let data = null;
+    let ret: {
+      reason?: any;
+      barcode?: any;
+      title?: any;
+      score?: any;
+    } = {};
+
     try {
       const response = await fetch(`/api/product?barcode=${barcode}`);
       if (!response.ok) {
@@ -25,12 +38,13 @@ const BarcodeScanner: React.FC = () => {
       }
       data = await response.json();
       console.log(data);
+      ret.barcode = data.barcode_number;
+      ret.title = data.title;
     } catch (error) {
       console.error("Error fetching product data:", error);
     }
 
     try {
-      console.log("Fetching carbon footprint data for product:", data);
       const response = await fetch(`/api/carbon_footprint`, {
         method: "POST",
         headers: {
@@ -43,24 +57,27 @@ const BarcodeScanner: React.FC = () => {
       }
       data = await response.json();
       console.log(data);
+
+      ret.score = data.carbonFootprint.score;
+      ret.reason = data.carbonFootprint.reason;
     } catch (error) {
       console.error("Error fetching carbon footprint data:", error);
     }
+
+    return ret;
   };
 
   useEffect(() => {
-    if (result) {
-      fetchProductData(result);
+    console.log(result);
+    onData({});
+    if (!isScanning) {
+      fetchProductData(result).then((data) => onData(data));
     }
-  }, [result]);
+  }, [isScanning]);
 
   return (
     <>
       <video ref={ref} />
-      <p>
-        <span>Last result: </span>
-        <span>{result}</span>
-      </p>
       <button onClick={() => setIsScanning(!isScanning)}>{isScanning ? "Stop Scanning" : "Start Scanning"}</button>
     </>
   );

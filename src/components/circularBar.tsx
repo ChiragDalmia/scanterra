@@ -1,4 +1,5 @@
-import React from "react";
+"use client";
+import React, { useEffect, useState } from "react";
 
 interface CircularBarProps {
   title: string;
@@ -11,7 +12,7 @@ interface CircularBarProps {
 
 const CircularBar: React.FC<CircularBarProps> = ({
   title,
-  percentage,
+  percentage = 0,
   size = 100,
   strokeWidth = 10,
   color = getColorBasedOnPercentage(percentage),
@@ -19,7 +20,24 @@ const CircularBar: React.FC<CircularBarProps> = ({
 }) => {
   const radius = (size - strokeWidth) / 2;
   const circumference = 2 * Math.PI * radius;
-  const offset = circumference - (percentage / 100) * circumference;
+  const [offset, setOffset] = useState(circumference);
+  const [currentPercentage, setCurrentPercentage] = useState(0);
+  const [currentColor, setCurrentColor] = useState("black");
+
+  useEffect(() => {
+    const timeoutId = setTimeout(() => {
+      setCurrentPercentage(percentage);
+      setCurrentColor(color);
+    }, 300);
+
+    return () => clearTimeout(timeoutId);
+  }, [percentage, color]);
+
+  useEffect(() => {
+    const progress = currentPercentage / 100;
+    const newOffset = circumference - progress * circumference;
+    setOffset(newOffset);
+  }, [currentPercentage, circumference]);
 
   return (
     <div>
@@ -34,7 +52,7 @@ const CircularBar: React.FC<CircularBarProps> = ({
           cy={size / 2}
         />
         <circle
-          stroke={color}
+          stroke={currentColor}
           fill="transparent"
           strokeWidth={strokeWidth}
           r={radius}
@@ -45,8 +63,8 @@ const CircularBar: React.FC<CircularBarProps> = ({
           strokeLinecap="round"
           style={{ transition: "stroke-dashoffset 0.35s" }}
         />
-        <text x="50%" y="50%" dy=".3em" textAnchor="middle" fontSize="1.5em" fill={color}>
-          {`${percentage}%`}
+        <text x="50%" y="50%" dy=".3em" textAnchor="middle" fontSize="1.5em" fill={currentColor}>
+          {`${currentPercentage}%`}
         </text>
       </svg>
     </div>
