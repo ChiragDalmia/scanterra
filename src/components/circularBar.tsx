@@ -40,33 +40,35 @@ const CircularBar: React.FC<CircularBarProps> = ({
   }, [currentPercentage, circumference]);
 
   return (
-    <div>
-      <h2>{title}</h2>
-      <svg width={size} height={size}>
-        <circle
-          stroke={backgroundColor}
-          fill="transparent"
-          strokeWidth={strokeWidth}
-          r={radius}
-          cx={size / 2}
-          cy={size / 2}
-        />
-        <circle
-          stroke={currentColor}
-          fill="transparent"
-          strokeWidth={strokeWidth}
-          r={radius}
-          cx={size / 2}
-          cy={size / 2}
-          strokeDasharray={circumference}
-          strokeDashoffset={offset}
-          strokeLinecap="round"
-          style={{ transition: "stroke-dashoffset 0.35s" }}
-        />
-        <text x="50%" y="50%" dy=".3em" textAnchor="middle" fontSize="1.5em" fill={currentColor}>
-          {`${currentPercentage}%`}
-        </text>
-      </svg>
+    <div className="rounded-lg bg-gray-800 mx-5 flex justify-center text-center">
+      <div className="p-5">
+        <h2 className="text-xl font-bold mb-2">{title}</h2>
+        <svg width={size} height={size}>
+          <circle
+            stroke={backgroundColor}
+            fill="transparent"
+            strokeWidth={strokeWidth}
+            r={radius}
+            cx={size / 2}
+            cy={size / 2}
+          />
+          <circle
+            stroke={currentColor}
+            fill="transparent"
+            strokeWidth={strokeWidth}
+            r={radius}
+            cx={size / 2}
+            cy={size / 2}
+            strokeDasharray={circumference}
+            strokeDashoffset={offset}
+            strokeLinecap="round"
+            style={{ transition: "stroke-dashoffset 0.35s" }}
+          />
+          <text x="50%" y="50%" dy=".3em" textAnchor="middle" className="text-lg font-bold" fill={currentColor}>
+            {`${currentPercentage}%`}
+          </text>
+        </svg>
+      </div>
     </div>
   );
 };
