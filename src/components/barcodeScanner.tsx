@@ -15,21 +15,8 @@ const BarcodeScanner: React.FC = () => {
     paused: !isScanning,
   });
 
-  const startScanning = (): void => {
-    console.log("startScanning");
-    setIsScanning(true);
-    setResult("");
-  };
-
-  const stopScanning = (): void => {
-    console.log("stopScanning");
-    setIsScanning(false);
-    if (result) {
-      fetchProductData(result);
-    }
-  };
-
   const fetchProductData = async (barcode: string) => {
+    console.log("Fetching product data for barcode:", barcode);
     try {
       const response = await fetch(`/api/product?barcode=${barcode}`);
       if (!response.ok) {
@@ -37,7 +24,7 @@ const BarcodeScanner: React.FC = () => {
       }
       const data = await response.json();
       setProductData(data);
-      console.log(productData);
+      console.log(data);
     } catch (error) {
       console.error("Error fetching product data:", error);
       // Handle error (e.g., show an error message to the user)
@@ -57,9 +44,7 @@ const BarcodeScanner: React.FC = () => {
         <span>Last result: </span>
         <span>{result}</span>
       </p>
-      <button onClick={isScanning ? stopScanning : startScanning}>
-        {isScanning ? "Stop Scanning" : "Start Scanning"}
-      </button>
+      <button onClick={() => setIsScanning(true)}>{isScanning ? "Stop Scanning" : "Start Scanning"}</button>
     </>
   );
 };
