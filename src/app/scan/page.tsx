@@ -18,36 +18,42 @@ const Scan = () => {
   }, [key]);
 
   return (
-    <>
+    <div className="bg-gray-900 text-white h-screen flex justify-center">
       {!isDataLoaded && (
         <>
-          <h1 className="text-2xl font-bold mb-4">Scan a product barcode</h1>
-          <BarcodeScanner onData={handleData} />
+          <div className="flex flex-col items-center">
+            <BarcodeScanner onData={handleData} />
+          </div>
         </>
       )}
       {isDataLoaded && (
         <>
-          <div className="flex flex-wrap justify-between">
+          <div className="flex flex-wrap justify-center">
             <div className="w-full md:w-1/3 p-4">
-              <div className="text-2xl font-bold">{scanData.title}</div>
-              <div className="text-sm">Barcode: {scanData.barcode}</div>
+              <div className="text-4xl font-bold text-center">{scanData.title}</div>
+              <div className="text-lg text-center">Barcode: {scanData.barcode}</div>
             </div>
-            <div className="w-full md:w-1/3 p-4">
+            <div className="w-full md:w-1/3 p-4 ">
               <CircularBar title={"Carbon Footprint"} percentage={scanData.score} size={200} strokeWidth={30} />
             </div>
             <div className="w-full md:w-1/3 p-4">
-              <div className="text-sm">{scanData.reason}</div>
+              <div className="text-lg text-center">{scanData.reason}</div>
             </div>
           </div>
-          <button
-            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-            onClick={() => setIsDataLoaded(false)}
-          >
-            Back
-          </button>
         </>
       )}
-    </>
+      {isDataLoaded && (
+        <button
+          className="fixed bottom-0 right-0 m-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+          onClick={() => {
+            setScanData({});
+            setIsDataLoaded(false);
+          }}
+        >
+          Scan another product
+        </button>
+      )}
+    </div>
   );
 };
 
