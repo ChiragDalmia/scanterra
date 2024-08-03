@@ -16,7 +16,6 @@ const BarcodeScanner: React.FC = () => {
 
   const fetchProductData = async (barcode: string) => {
     let data = null;
-    barcode = "060410025987";
 
     console.log("Fetching product data for barcode:", barcode);
     try {
@@ -62,8 +61,7 @@ const BarcodeScanner: React.FC = () => {
         <span>Last result: </span>
         <span>{result}</span>
       </p>
-      {/* <button onClick={() => setIsScanning(!isScanning)}>{isScanning ? "Stop Scanning" : "Start Scanning"}</button> */}
-      <button onClick={() => fetchProductData(result)}>{isScanning ? "Stop Scanning" : "Start Scanning"}</button>
+      <button onClick={() => setIsScanning(!isScanning)}>{isScanning ? "Stop Scanning" : "Start Scanning"}</button>
     </>
   );
 };
