@@ -44,7 +44,7 @@ const BarcodeScanner: React.FC = () => {
         <span>Last result: </span>
         <span>{result}</span>
       </p>
-      <button onClick={() => setIsScanning(true)}>{isScanning ? "Stop Scanning" : "Start Scanning"}</button>
+      <button onClick={() => setIsScanning(!isScanning)}>{isScanning ? "Stop Scanning" : "Start Scanning"}</button>
     </>
   );
 };
