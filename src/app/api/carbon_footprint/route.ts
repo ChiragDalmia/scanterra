@@ -11,12 +11,15 @@ export async function POST(request: Request) {
     const productData = await request.json();
     console.log("Product data:", JSON.stringify(productData));
     if (!productData) {
-      return NextResponse.json({ error: "Product data is required" }, { status: 400 });
+      return NextResponse.json(
+        { error: "Product data is required" },
+        { status: 400 }
+      );
     }
 
-    return { score: 100, reason: "This product is environmentally friendly" };
-
-    const message = `Given the following product data: ${JSON.stringify(productData)}, please:
+    const message = `Given the following product data: ${JSON.stringify(
+      productData
+    )}, please:
     1. Calculate the carbon footprint.
     2. Assign a score out of 100, where 100 is the most environmentally friendly.
     3. Provide a one-line, specific reason for the score.
@@ -45,6 +48,9 @@ export async function POST(request: Request) {
     return NextResponse.json({ carbonFootprint: parsedResponse });
   } catch (error) {
     console.error("Error calculating carbon footprint:", error);
-    return NextResponse.json({ error: "Failed to calculate carbon footprint" }, { status: 500 });
+    return NextResponse.json(
+      { error: "Failed to calculate carbon footprint" },
+      { status: 500 }
+    );
   }
 }
