@@ -23,6 +23,10 @@ const BarcodeScanner: React.FC<BarcodeScannerProps> = ({ onData }) => {
       return {};
     }
 
+    if (localStorage.getItem(barcode)) {
+      return JSON.parse(localStorage.getItem(barcode) as string);
+    }
+
     let data = null;
     let ret: {
       reason?: any;
@@ -70,6 +74,7 @@ const BarcodeScanner: React.FC<BarcodeScannerProps> = ({ onData }) => {
       setIsLoading(false); // Set isLoading to false after the fetch request is completed
     }
 
+    localStorage.setItem(barcode, JSON.stringify(ret));
     return ret;
   };
 
