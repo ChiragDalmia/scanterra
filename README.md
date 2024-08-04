@@ -16,6 +16,8 @@ ScanTerra is a web application that scans barcodes to fetch product details and 
 ## 🛠️ Technologies
 
 - **Frontend Framework**: [Next.js](https://nextjs.org/)
+- **Vercel**: https://vercel.com/ 
+- **Typescript**: https://www.typescriptlang.org/
 - **React**: [React](https://reactjs.org/) for building user interfaces
 - **Tailwind CSS**: [Tailwind CSS](https://tailwindcss.com/) for styling
 - **Framer Motion**: [Framer Motion](https://www.framer.com/api/motion/) for animations
