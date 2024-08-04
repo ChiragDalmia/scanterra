@@ -1,36 +1,34 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# ScanTerra
 
-## Getting Started
+Created By: Chirag Dalmia, Leo Cheng, and Kevin Huang
 
-First, run the development server:
+This repository is the source code for our website: https://scanterra.vercel.app/ created for TerraHacks 2024.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+ScanTerra is a web application that scans barcodes to fetch product details and evaluates their eco-friendliness using AI technology. Our mission is to help consumers make environmentally conscious decisions by providing them with a carbon footprint score! 
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🚀 Features
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- **Barcode Scanning**: Use your device’s camera to scan barcodes and identify products.
+- **Product Information Lookup**: Fetch detailed product information from the Barcode Lookup API.
+- **Eco-Friendliness Score**: Get an eco-friendliness score out of 100 for each product, calculated using AI technology.
+- **User-Friendly Interface**: Designed with Tailwind CSS for a modern, responsive experience.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## 🛠️ Technologies
 
-## Learn More
+- **Frontend Framework**: [Next.js](https://nextjs.org/)
+- **React**: [React](https://reactjs.org/) for building user interfaces
+- **Tailwind CSS**: [Tailwind CSS](https://tailwindcss.com/) for styling
+- **Framer Motion**: [Framer Motion](https://www.framer.com/api/motion/) for animations
+- **Barcode Scanning**: [react-zxing](https://github.com/nuxt-community/zxing) for barcode scanning
+- **Barcode Lookup API**: https://www.barcodelookup.com/api for accessing barcode data
+- **AI Integration**: [@anthropic-ai/sdk](https://docs.anthropic.com/) for calculating carbon footprint score
 
-To learn more about Next.js, take a look at the following resources:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## ⬇️ Installation
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+Follow these steps to get the project running on your local machine:
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+1. **Clone the Repository**
+2. **Install Necessary Dependencies using npm**
+3. **Set up Local Environment Variables**
+4. **Run the Development Server using npm run dev**
