@@ -50,8 +50,6 @@ const BarcodeScanner: React.FC<BarcodeScannerProps> = ({ onData }) => {
       ret.title = data.title;
     } catch (error) {
       console.error("Error fetching product data:", error);
-    } finally {
-      setIsLoading(false); // Set isLoading to false after the fetch request is completed
     }
 
     try {
@@ -73,9 +71,10 @@ const BarcodeScanner: React.FC<BarcodeScannerProps> = ({ onData }) => {
       ret.reason = data.carbonFootprint.reason;
     } catch (error) {
       console.error("Error fetching carbon footprint data:", error);
-    } finally {
-      setIsLoading(false); // Set isLoading to false after the fetch request is completed
     }
+
+    await new Promise((r) => setTimeout(r, 500));
+    setIsLoading(false); // Set isLoading to false after the fetch request is completed
 
     localStorage.setItem(barcode, JSON.stringify(ret));
     return ret;
