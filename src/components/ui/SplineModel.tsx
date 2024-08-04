@@ -4,7 +4,7 @@ import React from "react";
 
 const SplineModel = () => {
   return (
-    <div className="absolute h-[400px] w-full rounded-full">
+    <div className="absolute h-[700px] w-full rounded-full">
       <Spline scene="https://prod.spline.design/M-d56ViJl2ePqteH/scene.splinecode" />
     </div>
   );
