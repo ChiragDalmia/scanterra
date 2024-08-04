@@ -16,7 +16,7 @@ const CircularBar: React.FC<CircularBarProps> = ({
   size = 100,
   strokeWidth = 10,
   color = getColorBasedOnPercentage(percentage),
-  backgroundColor = "#e0e0e0",
+  backgroundColor = "#000000",
 }) => {
   const radius = (size - strokeWidth) / 2;
   const circumference = 2 * Math.PI * radius;
@@ -40,9 +40,9 @@ const CircularBar: React.FC<CircularBarProps> = ({
   }, [currentPercentage, circumference]);
 
   return (
-    <div className="rounded-lg bg-gray-800 mx-5 flex justify-center text-center drop-shadow-2xl">
+    <div className="mx-5 flex justify-center rounded-lg bg-gray-800 text-center drop-shadow-2xl">
       <div className="p-5">
-        <h2 className="text-xl font-bold mb-2">{title}</h2>
+        <h2 className="mb-2 text-xl font-bold">{title}</h2>
         <svg width={size} height={size}>
           <circle
             stroke={backgroundColor}
@@ -64,7 +64,14 @@ const CircularBar: React.FC<CircularBarProps> = ({
             strokeLinecap="round"
             style={{ transition: "stroke-dashoffset 0.35s" }}
           />
-          <text x="50%" y="50%" dy=".3em" textAnchor="middle" className="text-lg font-bold" fill={currentColor}>
+          <text
+            x="50%"
+            y="50%"
+            dy=".3em"
+            textAnchor="middle"
+            className="text-5xl font-bold"
+            fill={currentColor}
+          >
             {`${currentPercentage}%`}
           </text>
         </svg>
