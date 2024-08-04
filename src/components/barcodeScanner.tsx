@@ -109,8 +109,10 @@ const BarcodeScanner: React.FC<BarcodeScannerProps> = ({ onData }) => {
       )}
 
       {isLoading && (
-        <div className="my-8 text-center text-2xl font-bold">
-          <ParticleSwarmLoader />
+        <div className="my-8 text-center text-xl font-bold">
+          <div className="flex items-center justify-center">
+            <ParticleSwarmLoader />
+          </div>
           <p className="mt-4">Loading product data...</p>
         </div>
       )}
