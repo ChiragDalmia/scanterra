@@ -7,8 +7,8 @@ export default function Home() {
     <main className="relative min-h-screen">
       <HeroSection />
       <FeaturesSection/>
-      <CTAsection/>
       <NameSection/>
+      <CTAsection/>
     </main>
   );
 }
