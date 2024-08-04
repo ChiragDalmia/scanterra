@@ -1,6 +1,6 @@
 "use client";
 import BarcodeScanner from "@/components/barcodeScanner";
-import CircularBar from "@/components/circularBar";
+import ProductAlert from "@/components/ProductAlert";
 import React, { useEffect, useState } from "react";
 
 const Scan = () => {
@@ -18,50 +18,24 @@ const Scan = () => {
   }, [key]);
 
   return (
-    <div className="flex h-screen justify-center text-white">
-      {!isDataLoaded && (
-        <>
-          <div className="flex flex-col items-center">
+    <div className="bg-dot-white/[0.2] relative flex min-h-screen w-full items-center justify-center bg-black">
+      {/* Radial gradient for the container to give a faded look */}
+      <div className="pointer-events-none absolute inset-0 flex items-center justify-center [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)] bg-black"></div>
+      <div className="container mx-auto px-4 py-8">
+        {!isDataLoaded ? (
+          <div className="flex flex-col items-center justify-center">
             <BarcodeScanner onData={handleData} />
           </div>
-        </>
-      )}
-      {isDataLoaded && (
-        <>
-          <div className="flex flex-wrap justify-center">
-            <div className="w-full p-4 md:w-1/3">
-              <div className="text-center text-4xl font-bold">
-                {scanData.title}
-              </div>
-              <div className="text-center text-lg">
-                Barcode: {scanData.barcode}
-              </div>
-            </div>
-            <div className="w-full p-4 md:w-1/3">
-              <CircularBar
-                title={"Carbon Footprint"}
-                percentage={scanData.score}
-                size={200}
-                strokeWidth={20}
-              />
-            </div>
-            <div className="w-full p-4 md:w-1/3">
-              <div className="text-center text-lg">{scanData.reason}</div>
-            </div>
-          </div>
-        </>
-      )}
-      {isDataLoaded && (
-        <button
-          className="fixed bottom-0 right-0 m-4 rounded bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-700"
-          onClick={() => {
-            setScanData({});
-            setIsDataLoaded(false);
-          }}
-        >
-          Scan another product
-        </button>
-      )}
+        ) : (
+          <ProductAlert
+            scanData={scanData}
+            onClose={() => {
+              setScanData({});
+              setIsDataLoaded(false);
+            }}
+          />
+        )}
+      </div>
     </div>
   );
 };

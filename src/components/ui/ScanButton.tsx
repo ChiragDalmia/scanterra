@@ -1,7 +1,7 @@
 import React from "react";
 
 interface ScanButtonProps {
-  onClick: () => void;
+  onClick?: () => void;
   className?: string;
   hoverColor?: "red" | "green";
   children: React.ReactNode;

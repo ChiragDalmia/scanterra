@@ -1,3 +1,4 @@
+"use client";
 import React, { useState, useEffect } from "react";
 import { useZxing } from "react-zxing";
 import ParticleSwarmLoader from "./ui/ParticleSwarmLoader";
@@ -90,13 +91,13 @@ const BarcodeScanner: React.FC<BarcodeScannerProps> = ({ onData }) => {
 
   return (
     <div className="flex flex-col items-center justify-center">
-      <h1 className="mt-16 text-center text-4xl font-bold md:mt-8">
+      <h1 className="text-center text-4xl font-bold text-green-400 md:mt-8">
         Scan a product barcode
       </h1>
       {!isLoading && (
         <>
-          <div className="overflow-hidden mt-10 rounded-lg shadow-lg">
-            <video ref={ref} className="h-auto w-full max-w-md object-cover " />
+          <div className="mt-10 overflow-hidden rounded-lg shadow-lg">
+            <video ref={ref} className="h-auto w-full max-w-md object-cover" />
           </div>
           <ScanButton
             onClick={() => setIsScanning(!isScanning)}
