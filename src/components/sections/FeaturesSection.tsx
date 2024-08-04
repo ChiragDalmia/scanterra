@@ -29,7 +29,8 @@ const FeaturesSection = () => {
               Scan Barcode
             </h3>
             <p className="text-gray-400">
-              Simply scan the product's barcode using your device's camera.
+              Simply scan the product&apos;s barcode using your device&apos;s
+              camera.
             </p>
           </div>
           <div className="text-center">
