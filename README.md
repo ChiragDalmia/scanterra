@@ -1,5 +1,7 @@
 # ScanTerra
 
+**Case study:** [chiragdalmia.com/projects/scanterra](https://www.chiragdalmia.com/projects/scanterra)
+
 Created By: Chirag Dalmia, Leo Cheng, and Kevin Huang
 
 This repository is the source code for our website: https://scanterra.vercel.app/ created for TerraHacks 2024.
